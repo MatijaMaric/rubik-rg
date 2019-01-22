@@ -27,7 +27,13 @@ class App extends Component {
                   <Button onClick={rubik.getDoMove("D")}>Down</Button>
                   <Button onClick={rubik.getDoMove("D'")}>Down R</Button>
 
-                  <Button onClick={rubik.shuffle()}>Shuffle</Button>
+                  <Button
+                    onClick={rubik.shuffle()}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Shuffle
+                  </Button>
                 </div>
               </>
             )
