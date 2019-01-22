@@ -13,6 +13,21 @@ const CUBE_SPACING = 0.5;
 const BOUNDARY_SIZE = CUBE_SIZE + CUBE_SPACING;
 const ROTATION_SPEED = 0.1;
 
+const LEGAL_MOVES = [
+  "F",
+  "F'",
+  "B",
+  "B'",
+  "L",
+  "L'",
+  "R",
+  "R'",
+  "U",
+  "U'",
+  "D",
+  "D'"
+];
+
 export default class Rubik {
   constructor(element) {
     this.width = element.clientWidth;
@@ -207,6 +222,20 @@ export default class Rubik {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
+  };
+
+  getRandomInt = max => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+
+  shuffle = () => () => this.doShuffle();
+
+  doShuffle = () => {
+    for (let i = 0; i < 20; ++i) {
+      const move = LEGAL_MOVES[this.getRandomInt(LEGAL_MOVES.length - 1)];
+      this.moveQueue.push(move);
+    }
+    this.doNextMove();
   };
 
   render = () => {
